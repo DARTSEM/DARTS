@@ -1,12 +1,9 @@
-import java.util.Scanner;
-
-
 public class dart1 {
+
     public static void main(String[] args) {
 
         System.out.println("Initiliazing DART . . .\n");
         String longline = "-------------------------------------------------------\n";
-        Scanner input = new Scanner(System.in);
 
         /* EXPLANATIONS AND MORE:
          * every time the user can type in an integer or character to select their next step is called a menu.
@@ -16,16 +13,17 @@ public class dart1 {
          * For the switch cases we use the integer called 'menuSelect'
          * default for switch cases should always return the user to the same page.
          * After every input.nextInt() we have to add a input.nextLine() to avoid glitches
-         * input.close(); -> will be put at the end.
+         * input.close(); -> at the closing of the program ("X" in the Main Menu)
 
                         */
 
         // Starts the main menu.
-        mainMenu(longline, input);
+        mainMenu(longline);
+
 
     }
 
-    public static void mainMenu(String longline, Scanner input) {
+    public static void mainMenu(String longline) {
 
         System.out.println(longline + "Main Menu:\n" +
                 "Welcome to DART, your good old game rental system. The competition has no steam to keep up!\n" +
@@ -35,53 +33,57 @@ public class dart1 {
                 "2. Enter “E” for Employee \n" + //Password = "password123"
                 "3. Enter “C” for Customer\n" +
                 "4. Enter “X” to exit system \n");
-        String mainMenuSelect = input.nextLine();
+
+
+
+        String mainMenuSelect = dartInput.stringInput();
+
+
 
         switch (mainMenuSelect) {
             case "M" -> {
                 System.out.println("Type in the password:");
-                String passwordInput = input.nextLine();
+                String passwordInput = dartInput.stringInput();
 
                 if (passwordInput.equals("admin1234")) {
                     System.out.println("Successfuly logged in.");
-                    managerMenu(longline, input);
+                    managerMenu(longline);
                 } else {
                     System.out.println("Invalid Password");
-                    mainMenu(longline, input);
+                    mainMenu(longline);
                 }
             }
             case "E" -> {
                 System.out.println("Type in the password:");
-                String passwordInput = input.nextLine();
+                String passwordInput = dartInput.stringInput();
 
                 if (passwordInput.equals("password123")) {
                     System.out.println("Successfuly logged in.");
-                    employeeMenu(longline, input);
+                    employeeMenu(longline);
                 } else {
                     System.out.println("Invalid Password");
-                    mainMenu(longline, input);
+                    mainMenu(longline);
                 }
             }
             case "C" -> {
-                customerMenu(longline, input);
+                customerMenu(longline);
             }
             case "X" -> {
                 System.out.println("Thank you for using DART, goodbye!");
             }
             default -> {
                 System.out.println("Invalid selection, restarting...");
-                mainMenu(longline, input);
+                mainMenu(longline);
             }
         }
     }
 
-    public static void managerMenu(String longline, Scanner input) {
+    public static void managerMenu(String longline) {
         System.out.println(longline + "Manager Screen - Type one of the options below:\n" +
                 "1. Add an employee\n" +
                 "2. View all employees\n" +
                 "3. Return to Main Menu\n");
-        int menuSelect = input.nextInt();
-        input.nextLine(); // without this it triggers main menu twice.
+        int menuSelect = dartInput.intInput();
 
 
         switch (menuSelect) {
@@ -95,17 +97,17 @@ public class dart1 {
             }
             case 3 -> {
                 System.out.println("Returning to main menu.");
-                mainMenu(longline, input);
+                mainMenu(longline);
                 // Return to main menu
             }
             default -> {
                 System.out.println("Invalid selection, restarting...");
-                managerMenu(longline, input);
+                managerMenu(longline);
             }
         }
     }
 
-    public static void employeeMenu(String longline, Scanner input) {
+    public static void employeeMenu(String longline) {
         System.out.println(longline + "Employee Screen - Type one of the options below:\n" +
                 "1. Register a game\n" +
                 "2. Remove a game\n" +
@@ -114,8 +116,7 @@ public class dart1 {
                 "5. Show total rent profit\n" +
                 "6. View all games\n" +
                 "7. Return to Main Menu\n");
-        int menuSelect = input.nextInt();
-        input.nextLine();
+        int menuSelect = dartInput.intInput();
 
 
         switch (menuSelect) {
@@ -139,23 +140,22 @@ public class dart1 {
             }
             case 7 -> {
                 System.out.println("Returning to main menu.");
-                mainMenu(longline, input);
+                mainMenu(longline);
                 // Return to main menu
             }
             default -> {
                 System.out.println("Invalid selection, restarting...");
-                employeeMenu(longline, input);
+                employeeMenu(longline);
             }
 
         }
     }
-    public static void customerMenu(String longline, Scanner input) {
+    public static void customerMenu(String longline) {
         System.out.println(longline + "Customer Screen - Type one of the options below:\n" +
                 "1. Rent a game\n" +
                 "2. Return a game\n" +
                 "3. Return to Main Menu\n");
-        int menuSelect = input.nextInt();
-        input.nextLine();
+        int menuSelect = dartInput.intInput();
 
 
         switch (menuSelect) {
@@ -167,14 +167,15 @@ public class dart1 {
             }
             case 3 -> {
                 System.out.println("Returning to main menu.");
-                mainMenu(longline, input);
+                mainMenu(longline);
                 // Return to main menu ?? twice main menu
             }
             default -> {
                 System.out.println("Invalid selection, restarting...");
-                customerMenu(longline, input);
+                customerMenu(longline);
 
             }
         }
     }
 }
+
