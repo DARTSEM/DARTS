@@ -14,5 +14,4 @@ public class dartInput {
     public static void closeScanner() {
         scan.close();
     }
-
 }
