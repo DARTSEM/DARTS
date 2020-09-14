@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class dartInput {
+public class extra {
     private static Scanner scan = new Scanner(System.in);
     public static int intInput () {
         int value;
@@ -13,5 +13,8 @@ public class dartInput {
     }
     public static void closeScanner() {
         scan.close();
+    }
+    public static String line() {
+        return "--------------------------------------------------------------------------------------------------------\n";
     }
 }
