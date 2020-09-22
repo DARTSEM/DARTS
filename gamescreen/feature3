@@ -32,7 +32,7 @@ public class Feature3 {
                 } else if (firstScreen == 3) {
                     array.trimToSize();
                     array.printElements();//Prints the game details. It should print them all, but I haven't had time to make it print everything since 3 am thingy.
-                } else if (firstScreen > 3){
+                } else if (firstScreen > 3 || firstScreen < 0){
                     System.out.println("Pick a proper choice!");
                 }
                 array.trimToSize(); //Trims the array so it doesnt have 192734192428921 empty listings.
