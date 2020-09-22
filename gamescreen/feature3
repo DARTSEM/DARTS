@@ -1,0 +1,46 @@
+package gamescreen;
+import java.util.Scanner;
+
+public class Feature3 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        boolean reset = true; //To reset the menu
+
+        gameArray array = new gameArray();
+        array.addGames(32, "Dota", "Moba", 53.2, "Rented"); //The parameters of the game
+        array.addGames(54, "Swag", "bruh", 51.2, "Available");
+        do{
+            System.out.println("1. Add game\n2. Remove game\n3. Show game list");
+            int firstScreen = input.nextInt();
+            input.nextLine();
+            if (firstScreen == 1) { //decided to use this instead of switches on a whim. probably gonna change this.
+                System.out.println("Please input new game's ID and name");
+                int newgameID = input.nextInt();
+                input.nextLine();
+                String gameName = input.nextLine();
+                String gameGenre = input.nextLine();
+                double dailyRent = input.nextDouble();
+                String status = "Available";
+                array.addGames(newgameID, gameName,gameGenre,dailyRent,status); //The method used to create the game. It's not complete just yet, but I wanted to upload this before 3 am or something.
+                array.trimToSize();
+                System.out.println("Game added! ID of: " + newgameID);
+            } else if (firstScreen == 2) {
+                System.out.println("Which game would you like to remove? Make sure to remove the position from the list, not the actual game ID.");
+                int removedNumber = input.nextInt();
+                array.removeGame(removedNumber);
+                array.trimToSize();
+                System.out.println("Game removed!");
+            } else if (firstScreen == 3) {
+                array.trimToSize();
+                array.printElements();
+            }
+            array.trimToSize(); //Trims the array so it doesnt have 192734192428921 empty listings.
+            array.printElements(); //Prints the game details. It should print them all, but I haven't had time to make it print everything since 3 am thingy.
+
+            System.out.println("Would you like to edit the list again?");
+            reset = input.nextBoolean();
+        }while(reset == true);
+    }
+}
+
+// Please note that this isn't done. I should have it fully up and running by tomorrow morning, if I manage to stay alive.
