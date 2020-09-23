@@ -1,20 +1,38 @@
-package src.julia.dart;
+package com.julia.dart;
 
 import java.util.Scanner;
 
 public class Utilities {
     private static Scanner scan = new Scanner(System.in);
     public static int intInput () {
-        int value;
-        value = scan.nextInt();
-        scan.nextLine();
+        int value = 0;
+        boolean correctInput = false;
+
+        while (!correctInput) {
+            try {
+                value = scan.nextInt();
+                correctInput = true;
+            } catch (Exception wrongInput) {
+                wrongInputRender("a real number without decimals.");
+            }
+            scan.nextLine();
+        }
         return value;
     }
 
     public static Double doubleInput () {
-        double value;
-        value = scan.nextDouble();
-        scan.nextLine();
+        double value = 0;
+        boolean correctInput = false;
+
+        while (!correctInput) {
+            try {
+                value = scan.nextDouble();
+                correctInput = true;
+            } catch (Exception wrongInput) {
+                wrongInputRender("a real number.");
+            }
+            scan.nextLine();
+        }
         return value;
     }
 
@@ -26,5 +44,8 @@ public class Utilities {
     }
     public static String line() {
         return "--------------------------------------------------------------------------------------------------------\n";
+    }
+    public static void wrongInputRender(String wrongInputInfo) {
+        System.out.println("Your input was the wrong type, it must be " + wrongInputInfo + " Try again:");
     }
 }
