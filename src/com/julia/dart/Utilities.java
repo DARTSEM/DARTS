@@ -4,19 +4,35 @@ import java.util.Scanner;
 
 public class Utilities {
     private static Scanner scan = new Scanner(System.in);
-    public static int intInput ()
-        int value;
-        //inputs integer then prints to console after next line
-        value = scan.nextInt();
-        scan.nextLine();
+    public static int intInput () {
+        int value = 0;
+        boolean correctInput = false;
+
+        while (!correctInput) {
+            try {
+                value = scan.nextInt();
+                correctInput = true;
+            } catch (Exception wrongInput) {
+                wrongInputRender("a real number without decimals.");
+            }
+            scan.nextLine();
+        }
         return value;
     }
 
     public static Double doubleInput () {
-        double value;
-        //inputs double value then prints to console after next line
-        value = scan.nextDouble();
-        scan.nextLine();
+        double value = 0;
+        boolean correctInput = false;
+
+        while (!correctInput) {
+            try {
+                value = scan.nextDouble();
+                correctInput = true;
+            } catch (Exception wrongInput) {
+                wrongInputRender("a real number.");
+            }
+            scan.nextLine();
+        }
         return value;
     }
 
@@ -28,5 +44,8 @@ public class Utilities {
     }
     public static String line() {
         return "--------------------------------------------------------------------------------------------------------\n";
+    }
+    public static void wrongInputRender(String wrongInputInfo) {
+        System.out.println("Your input was the wrong type, it must be " + wrongInputInfo + " Try again:");
     }
 }
