@@ -1,0 +1,24 @@
+package src.com.julia.dart.views;
+import src.com.julia.dart.model.DartCustomer;
+import src.com.julia.dart.model.DartProduct;
+import src.com.julia.dart.Utilities;
+import src.com.julia.dart.model.DartProductType;
+
+import java.util.UUID;
+
+public class DartAddCustomerView {
+    public static DartCustomer getCustomerData(){
+        String name;
+        UUID id;
+
+        System.out.println("Please enter customer name");
+        name = Utilities.stringInput();
+        id = UUID.randomUUID();
+
+        DartCustomer newCustomer = new DartCustomer(id, name);
+        return newCustomer;
+    }
+    public static void renderSuccess() {
+        System.out.println("Successfully registered a game!");
+    }
+}
