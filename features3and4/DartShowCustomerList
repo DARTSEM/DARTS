@@ -1,0 +1,13 @@
+package src.com.julia.dart.views;
+
+import src.com.julia.dart.model.DartCustomer;
+import src.com.julia.dart.model.DartModel;
+import src.com.julia.dart.model.DartProduct;
+
+import java.util.Collection;
+
+public class DartShowCustomerList {
+    public Collection<DartCustomer> getCustomerList() {
+        return DartModel.mCustomers.values();
+        }
+    }
