@@ -22,6 +22,7 @@ public class DartController {
     DartRemoveProductView mRemoveProductView;
     DartRemoveCustomerView mRemoveCustomerView;
     DartRentProductView mRentProductView;
+    DartReturnProductView mReturnProductView;
     DartShowEmployeeMenuView mShowEmployeeMenuView;
     DartShowGamesView mShowGamesView;
     // DartSearchEmployeeView mSearchEmployeeView;
@@ -40,6 +41,7 @@ public class DartController {
         mRemoveProductView = new DartRemoveProductView();
         mRemoveCustomerView = new DartRemoveCustomerView();
         mRentProductView = new DartRentProductView();
+        mReturnProductView = new DartReturnProductView();
         mShowEmployeeMenuView = new DartShowEmployeeMenuView();
         mShowGamesView = new DartShowGamesView();
        //  mSearchEmployeeView = new DartSearchEmployeeView();
