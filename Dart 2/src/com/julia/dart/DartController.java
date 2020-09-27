@@ -210,7 +210,7 @@ public class DartController {
 
         switch (input) {
             case 1 -> { //Rent a game
-
+            mRentProductView.render(mModel.getProductList());
             }
             case 2 -> { //Return a game
 
