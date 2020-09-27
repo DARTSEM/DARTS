@@ -22,6 +22,7 @@ public class DartController {
     DartRemoveProductView mRemoveProductView;
     DartRemoveCustomerView mRemoveCustomerView;
     DartShowEmployeeMenuView mShowEmployeeMenuView;
+    DartShowGamesView mShowGamesView;
     DartSearchEmployeeView mSearchEmployeeView;
 
     public DartController() {
@@ -38,20 +39,12 @@ public class DartController {
         mRemoveProductView = new DartRemoveProductView();
         mRemoveCustomerView = new DartRemoveCustomerView();
         mShowEmployeeMenuView = new DartShowEmployeeMenuView();
+        mShowGamesView = new DartShowGamesView();
         mSearchEmployeeView = new DartSearchEmployeeView();
     }
 
     public void main() {
-        // start the system
-
         System.out.println("Initiliazing DART . . .\n");
-
-        /* EXPLANATIONS AND MORE:
-         * every time the user can type in an integer or character to select their next step is called a menu.
-         * default for switch cases should always return the user to the same page.
-         * the class called "Utilities" has various methods we can use, such as 'stringInput' to replace
-           the usual input.nextLine
-         */
 
         // Starts the main menu.
 
@@ -151,13 +144,15 @@ public class DartController {
             case 2 -> { //Remove a game
                 mRemoveProductView.render();
                 UUID retVal = mRemoveProductView.read();
-                while (retVal == null) {
+                if (retVal == null) {
                     mRemoveProductView.renderError();
-                    mRemoveProductView.render();
-                    retVal = mRemoveProductView.read();
+                    doEmployeeMenu();
+                } else {
+                    mModel.removeProduct(retVal);
+                    mRemoveEmployeeView.renderSuccess();
+                    doEmployeeMenu();
                 }
-                mModel.removeProduct(retVal);
-                mRemoveProductView.renderSuccess();
+
             }
             case 3 -> { //Register a customer
                 DartCustomer customer = mAddCustomerView.getCustomerData();
@@ -173,14 +168,14 @@ public class DartController {
                     mRemoveCustomerView.render();
                     retVal = mRemoveCustomerView.read();
                 }
-                mModel.removeCustomer(retVal);
                 mRemoveCustomerView.renderSuccess();
             }
             case 5 -> { //Show total rent profit
 
             }
             case 6 -> { //View all games
-
+                doShowGamesView();
+                doManagerMenu();
             }
             case 7 -> { //Return to main menu
                 mEmployeeMenuView.renderExit();
@@ -219,7 +214,7 @@ public class DartController {
     }
 
     void doShowEmployeeMenuView() {
-        mShowEmployeeMenuView.render();
+        mShowEmployeeMenuView.render(mModel.getEmployeeList());
         UUID id = null;
 
         Integer input = mShowEmployeeMenuView.read();
@@ -260,6 +255,32 @@ public class DartController {
             }
         }
     }
+    void doShowGamesView() {
+        mShowGamesView.render(mModel.getProductList());
+        UUID id = null;
 
+        Integer input = mShowGamesView.read();
 
+        switch (input) {
+            case 1 -> { //Remove product
+                mRemoveProductView.render();
+                id = mRemoveProductView.read();
+                if (id == null) {
+                    mRemoveProductView.renderError();
+                    doShowEmployeeMenuView();
+                } else {
+                    mModel.removeProduct(id);
+                    mRemoveProductView.renderSuccess();
+                    doShowEmployeeMenuView();
+                }
+            }
+            case 2 -> {
+                mShowGamesView.renderExit();
+            }
+            default -> {
+                mShowGamesView.renderError();
+                doShowGamesView();
+            }
+        }
+    }
 }
