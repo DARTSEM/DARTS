@@ -1,14 +1,14 @@
 package com.julia.dart.views;
-
 import com.julia.dart.Utilities;
+
 import java.util.UUID;
 
 public class DartRentProductView {
   
     public void render() {
-        //Costumer view for returning a product -Louis
+        //Costumer view for renting a product -Louis
         System.out.println(Utilities.line() + "Customer Screen - Type one of the options below:\n" +
-                "1. Enter id of product you wish to return:\n" +
+                "1. Enter id of product you wish to rent:\n" +
                 "2. Return to Main Menu\n");
     }
 
@@ -31,7 +31,6 @@ public class DartRentProductView {
         } catch (IllegalArgumentException e) {
             return retVal;
         }
-
     }
   
 }
