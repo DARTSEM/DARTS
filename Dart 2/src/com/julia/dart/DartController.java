@@ -213,6 +213,8 @@ public class DartController {
             mRentProductView.render(mModel.getProductList());
             }
             case 2 -> { //Return a game
+            mReturnProductView.render();
+
 
             }
             case 3 -> { //Return to main menu
