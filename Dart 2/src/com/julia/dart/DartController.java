@@ -156,7 +156,8 @@ public class DartController {
                     mRemoveProductView.render();
                     retVal = mRemoveProductView.read();
                 }
-                mRemoveEmployeeView.renderSuccess();
+                mModel.removeProduct(retVal);
+                mRemoveProductView.renderSuccess();
             }
             case 3 -> { //Register a customer
                 DartCustomer customer = mAddCustomerView.getCustomerData();
@@ -172,6 +173,7 @@ public class DartController {
                     mRemoveCustomerView.render();
                     retVal = mRemoveCustomerView.read();
                 }
+                mModel.removeCustomer(retVal);
                 mRemoveCustomerView.renderSuccess();
             }
             case 5 -> { //Show total rent profit
