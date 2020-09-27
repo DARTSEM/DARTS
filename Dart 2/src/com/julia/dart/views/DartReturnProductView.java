@@ -7,15 +7,17 @@ import java.util.UUID;
 
 public class DartReturnProductView {
 
-    public void render() {
-      Integer productID;
-      Integer daysRented;
+    public void render(Collection<DartProduct> productList) {
+        //customer view for returning a product -Louis
+        System.out.println(Utilities.line() + "Customer Screen - Type one of the options below:\n" +
+                "1. Return a product\n" +
+                "2. Return to previous menu\n");
+      for (DartProduct product : productList) {
+          System.out.println(product);
+      }
+    }
 
-      //customer view for returning a product -Louis
-      System.out.println(Utilities.line() + "Please enter the id of the product you wish to return:\n" );
-      productID = Utilities.intInput();
-      System.out.println(Utilities.line() + "Please enter the number of days the product has been rented:\n" );
-      daysRented = Utilities.intInput();
+    public void renderSuccess() { System.out.println("Successfully returned a product!"); }
 
     }
 
