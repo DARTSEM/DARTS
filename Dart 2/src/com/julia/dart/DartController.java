@@ -188,7 +188,7 @@ public class DartController {
             }
             case 6 -> { //View all games
                 doShowGamesView();
-                doManagerMenu();
+                doEmployeeMenu();
             }
             case 7 -> { //Return to main menu
                 mEmployeeMenuView.renderExit();
