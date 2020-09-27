@@ -6,7 +6,7 @@ import java.util.UUID;
 public class DartReturnProductView {
   
   public void render() {
-        //Costumer view for returning a product -Louis
+        //customer view for returning a product -Louis
         System.out.println(Utilities.line() + "Customer Screen - Type one of the options below:\n" +
                 "1. Enter id of product you wish to return:\n" +
                 "2. Return to Main Menu\n");
