@@ -240,13 +240,14 @@ public class DartController {
             case 2 -> { //Remove employee
                 mRemoveEmployeeView.render();
                 id = mRemoveEmployeeView.read();
-                while (id == null) {
+                if (id == null) {
                     mRemoveEmployeeView.renderError();
-                    mRemoveEmployeeView.render();
-                    id = mRemoveEmployeeView.read();
+                    doShowEmployeeMenuView();
+                } else {
+                    mModel.removeEmployee(id);
+                    mRemoveEmployeeView.renderSuccess();
+                    doShowEmployeeMenuView();
                 }
-                mRemoveEmployeeView.renderSuccess();
-                doShowEmployeeMenuView();
             }
             case 3 -> {
                 mShowEmployeeMenuView.renderExit();
