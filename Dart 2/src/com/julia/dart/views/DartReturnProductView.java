@@ -24,7 +24,7 @@ public class DartReturnProductView {
     }
 
     public void renderError() {
-        System.out.println("Invalid id, restarting...");
+        System.out.println("Invalid input, restarting...");
     }
 
     public UUID read() {
