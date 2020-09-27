@@ -65,6 +65,7 @@ public class DartController {
         mMainMenuView.render();
 
         String mainMenuSelect = mMainMenuView.read();
+        mainMenuSelect = mainMenuSelect.toUpperCase(); // converts all letters in the string to uppercase
 
         switch (mainMenuSelect) {
             case "M" -> { //Manager menu
