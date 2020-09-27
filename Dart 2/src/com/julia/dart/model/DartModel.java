@@ -24,7 +24,7 @@ public class DartModel {
     public void addCustomer( DartCustomer customer ) {
         mCustomers.put( customer.getId(), customer );
     }
-s
+
     public void removeCustomer( UUID id ) {
         mCustomers.remove( id );
     }
