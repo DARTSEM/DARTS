@@ -5,12 +5,16 @@ import java.util.UUID;
 
 public class DartRentProductView {
   
-    public void render() {
+    public void render(Collection<DartProduct> productList) {
         //customer view for renting a product -Louis
-        System.out.println(Utilities.line() + "Customer Screen - Type one of the options below:\n" +
-                "1. Enter id of product you wish to rent:\n" +
-                "2. Return to Main Menu\n");
+        System.out.println(Utilities.line() + "Which product would you like to rent?\n" +
+                "ID:");
+        for (DartProduct product : productList) {
+            System.out.println(product);
+        }
     }
+
+    public void renderSuccess() { System.out.println("Successfully rented a product!"); }
 
     public void renderExit() {
         System.out.println("Returning to main menu.");
