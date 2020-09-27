@@ -25,6 +25,7 @@ public class DartRental {
         mReturnDate = returnDate;
     }
 
+    // calculates amount paid upon returning product
     public Double totalRentFee() {
         LocalDate endDate = mReturnDate == null ? LocalDate.now() : mReturnDate; //
         long daysBetween = Duration.between(mRentDate, endDate).toDays();
