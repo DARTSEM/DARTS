@@ -1,15 +1,22 @@
 package com.julia.dart.views;
 
 import com.julia.dart.Utilities;
+
+
 import java.util.UUID;
 
 public class DartReturnProductView {
-  
-  public void render() {
-        //customer view for returning a product -Louis
-        System.out.println(Utilities.line() + "Customer Screen - Type one of the options below:\n" +
-                "1. Enter id of product you wish to return:\n" +
-                "2. Return to Main Menu\n");
+
+    public void render() {
+      Integer productID;
+      Integer daysRented;
+
+      //customer view for returning a product -Louis
+      System.out.println(Utilities.line() + "Please enter the id of the product you wish to return:\n" );
+      productID = Utilities.intInput();
+      System.out.println(Utilities.line() + "Please enter the number of days the product has been rented:\n" );
+      daysRented = Utilities.intInput();
+
     }
 
     public void renderExit() {
