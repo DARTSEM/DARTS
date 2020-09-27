@@ -8,10 +8,8 @@ import java.util.Collection;
 public class DartShowEmployeeMenuView {
     public void render(Collection<DartEmployee> employeeList){
             System.out.println(Utilities.line() + "Employee Database - Type one of the options below:\n" +
-                    "1. Search employee\n" +
-                    "2. Remove employee\n" +
-                    "3. Return to previous menu\n");
-        System.out.println(Utilities.line());
+                    "1. Remove employee\n" +
+                    "2. Return to previous menu\n");
 
         for (DartEmployee employee : employeeList) {
             System.out.println(employee);
@@ -29,3 +27,4 @@ public class DartShowEmployeeMenuView {
     }
 
 }
+
