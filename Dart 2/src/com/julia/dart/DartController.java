@@ -23,7 +23,7 @@ public class DartController {
     DartRemoveCustomerView mRemoveCustomerView;
     DartShowEmployeeMenuView mShowEmployeeMenuView;
     DartShowGamesView mShowGamesView;
-    DartSearchEmployeeView mSearchEmployeeView;
+    // DartSearchEmployeeView mSearchEmployeeView;
 
     public DartController() {
         mModel = new DartModel();
@@ -40,11 +40,20 @@ public class DartController {
         mRemoveCustomerView = new DartRemoveCustomerView();
         mShowEmployeeMenuView = new DartShowEmployeeMenuView();
         mShowGamesView = new DartShowGamesView();
-        mSearchEmployeeView = new DartSearchEmployeeView();
+       //  mSearchEmployeeView = new DartSearchEmployeeView();
     }
 
     public void main() {
+        // start the system
+
         System.out.println("Initiliazing DART . . .\n");
+
+        /* EXPLANATIONS AND MORE:
+         * every time the user can type in an integer or character to select their next step is called a menu.
+         * default for switch cases should always return the user to the same page.
+         * the class called "Utilities" has various methods we can use, such as 'stringInput' to replace
+           the usual input.nextLine
+         */
 
         // Starts the main menu.
 
@@ -220,21 +229,7 @@ public class DartController {
         Integer input = mShowEmployeeMenuView.read();
 
         switch(input) {
-            case 1 -> { //Search for specific employee
-                mSearchEmployeeView.render();
-                id = mSearchEmployeeView.read();
-
-                DartEmployee employee = mModel.getEmployeeById(id);
-                while (employee == null) {
-                    mSearchEmployeeView.renderError();
-                    mSearchEmployeeView.render();
-                    id = mSearchEmployeeView.read();
-                    employee = mModel.getEmployeeById(id);
-                }
-                mSearchEmployeeView.renderSuccess(employee);
-                doShowEmployeeMenuView();
-            }
-            case 2 -> { //Remove employee
+            case 1 -> { //Remove employee
                 mRemoveEmployeeView.render();
                 id = mRemoveEmployeeView.read();
                 if (id == null) {
@@ -246,7 +241,7 @@ public class DartController {
                     doShowEmployeeMenuView();
                 }
             }
-            case 3 -> {
+            case 2 -> {
                 mShowEmployeeMenuView.renderExit();
             }
             default -> {
@@ -284,3 +279,4 @@ public class DartController {
         }
     }
 }
+
