@@ -1,11 +1,9 @@
 package com.julia.dart;
 
-import com.julia.dart.model.DartCustomer;
-import com.julia.dart.model.DartEmployee;
-import com.julia.dart.model.DartModel;
-import com.julia.dart.model.DartProduct;
+import com.julia.dart.model.*;
 import com.julia.dart.views.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class DartController {
@@ -17,14 +15,20 @@ public class DartController {
     DartCustomerView mCustomerView;
     DartAddEmployeeView mAddEmployeeView;
     DartAddProductView mAddProductView;
+    DartAddMusicView mAddMusicView; //added something here!
     DartAddCustomerView mAddCustomerView;
     DartRemoveEmployeeView mRemoveEmployeeView;
     DartRemoveProductView mRemoveProductView;
+    //DartRemoveSongView mRemoveSongView;
     DartRemoveCustomerView mRemoveCustomerView;
     DartRentProductView mRentProductView;
     DartReturnProductView mReturnProductView;
+    //DartRentSongView
+    //DartReturnProductView
     DartShowEmployeeMenuView mShowEmployeeMenuView;
     DartShowGamesView mShowGamesView;
+    DartShowSongsView mShowSongsView;
+    DartTotalRentProfitView mTotalRentProfitView;
     // DartSearchEmployeeView mSearchEmployeeView;
 
     public DartController() {
@@ -44,7 +48,8 @@ public class DartController {
         mReturnProductView = new DartReturnProductView();
         mShowEmployeeMenuView = new DartShowEmployeeMenuView();
         mShowGamesView = new DartShowGamesView();
-       //  mSearchEmployeeView = new DartSearchEmployeeView();
+        mTotalRentProfitView = new DartTotalRentProfitView();
+        //  mSearchEmployeeView = new DartSearchEmployeeView();
     }
 
     public void main() {
@@ -120,11 +125,11 @@ public class DartController {
 
         Integer input = mManagerMenuView.read();
 
-        switch( input ) {
+        switch (input) {
             case 1 -> { //Add employee
                 DartEmployee employee = mAddEmployeeView.getEmployeeData(); // get the employee data from the user via the view object
 
-                mModel.addEmployee( employee ); // store the data in the storage
+                mModel.addEmployee(employee); // store the data in the storage
                 mAddEmployeeView.renderSuccess();
                 doManagerMenu();
             }
@@ -150,7 +155,7 @@ public class DartController {
         switch (input) {
             case 1 -> { //Register game
                 DartProduct product = mAddProductView.getProductData();
-                mModel.addProduct( product );
+                mModel.addProduct(product);
                 mAddProductView.renderSuccess();
                 doEmployeeMenu();
             }
@@ -168,12 +173,18 @@ public class DartController {
 
             }
             case 3 -> { //Register a customer
+
+            }
+            case 4 -> { //Register a customer
+
+            }
+            case 5 -> { //Register a customer
                 DartCustomer customer = mAddCustomerView.getCustomerData();
-                mModel.addCustomer( customer );
+                mModel.addCustomer(customer);
                 mAddCustomerView.renderSuccess();
                 doEmployeeMenu();
             }
-            case 4 -> { //Remove a customer
+            case 6 -> { //Remove a customer
                 mRemoveCustomerView.render();
                 UUID retVal = mRemoveCustomerView.read();
                 while (retVal == null) {
@@ -183,14 +194,14 @@ public class DartController {
                 }
                 mRemoveCustomerView.renderSuccess();
             }
-            case 5 -> { //Show total rent profit
+            case 7 -> { //Show total rent profit
 
             }
-            case 6 -> { //View all games
+            case 8 -> { //View all games
                 doShowGamesView();
                 doEmployeeMenu();
             }
-            case 7 -> { //Return to main menu
+            case 9 -> { //Return to main menu
                 mEmployeeMenuView.renderExit();
                 doMainMenu();
 
@@ -205,19 +216,38 @@ public class DartController {
 
     void doCustomerMenu() {
         mCustomerView.render();
-
+        UUID id = null;
         Integer input = mCustomerView.read();
-
         switch (input) {
             case 1 -> { //Rent a game
-            mRentProductView.render(mModel.getProductList());
+                mRentProductView.render(mModel.getProductList());
+                id = mCustomerView.readUUID();
+                if (id == null) {
+                    mRentProductView.renderError();
+                    doCustomerMenu();
+                }
+                mRentProductView.renderSuccess();
+                DartProduct.rentProduct();
+                doCustomerMenu();
             }
             case 2 -> { //Return a game
-            mReturnProductView.render();
-
+                mReturnProductView.render(mModel.getProductList());
+                id = mCustomerView.readUUID();
+                if (id == null) {
+                    mReturnProductView.renderError();
+                    doCustomerMenu();
+                }
+                mReturnProductView.renderSuccess();
+                DartProduct.returnProduct();
+                doCustomerMenu();
+            }
+            case 3 -> { //Rent Song
 
             }
-            case 3 -> { //Return to main menu
+            case 4 -> { //Return Song
+
+            }
+            case 5 -> { //Return to main menu
                 mCustomerView.renderExit();
                 doMainMenu();
             }
@@ -234,7 +264,7 @@ public class DartController {
 
         Integer input = mShowEmployeeMenuView.read();
 
-        switch(input) {
+        switch (input) {
             case 1 -> { //Remove employee
                 mRemoveEmployeeView.render();
                 id = mRemoveEmployeeView.read();
@@ -256,6 +286,7 @@ public class DartController {
             }
         }
     }
+
     void doShowGamesView() {
         mShowGamesView.render(mModel.getProductList());
         UUID id = null;
@@ -285,4 +316,3 @@ public class DartController {
         }
     }
 }
-
