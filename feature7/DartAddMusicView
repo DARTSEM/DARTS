@@ -1,0 +1,36 @@
+package com.julia.dart.views;
+
+import com.julia.dart.Utilities;
+import com.julia.dart.model.DartMusic;
+import com.julia.dart.model.DartProduct;
+import com.julia.dart.model.DartProductType;
+
+import java.util.UUID;
+
+public class DartAddMusicView {
+    public DartMusic getMusicData(){
+        String title, artist;
+        UUID id;
+        Integer releaseYear;
+        Double dailyRentFee;
+
+        System.out.println(Utilities.line() + "Creating a Song. Please type the song's: ");
+        id = UUID.randomUUID();
+        System.out.println(Utilities.line() + "Title\n");
+        title = Utilities.stringInput();
+        System.out.println(Utilities.line() + "Artist\n");
+        artist = Utilities.stringInput();
+        System.out.println(Utilities.line() + "Daily rent fee\n");
+        dailyRentFee = Utilities.doubleInput();
+        System.out.println(Utilities.line() + "Release year\n");
+        releaseYear = Utilities.intInput();
+
+        DartMusic music = new DartMusic(id, title, artist, dailyRentFee, releaseYear);
+        return music;
+    }
+
+    public void renderSuccess() {
+        System.out.println("Successfully registered a song!");
+    }
+
+}
