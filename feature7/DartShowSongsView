@@ -1,0 +1,30 @@
+package com.julia.dart.views;
+
+import com.julia.dart.Utilities;
+import com.julia.dart.model.DartMusic;
+import com.julia.dart.model.DartProduct;
+
+import java.util.Collection;
+
+public class DartShowSongsView {
+    public void render(Collection<DartMusic> musicList){
+        System.out.println(Utilities.line() + "Song Database - Type one of the options below:\n" +
+                "1. Remove Song:\n" +
+                "2. Return to previous menu\n");
+
+        for (DartMusic music : musicList) {
+            System.out.println(music);
+        }
+    }
+
+    public void renderExit() { System.out.println("Returning to previous menu."); }
+
+    public void renderError() { System.out.println("Invalid selection, restarting..."); }
+
+    public Integer read() {
+        Integer input = Utilities.intInput();
+
+        return input;
+    }
+
+}
