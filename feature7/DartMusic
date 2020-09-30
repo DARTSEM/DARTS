@@ -1,0 +1,55 @@
+package com.julia.dart.model;
+
+import java.util.UUID;
+import java.util.Collection;
+
+
+public class DartMusic {
+    private UUID mId;
+    private String mTitle, mArtist;
+    private Integer mReleaseYear;
+    private Double mDailyRentFee;
+    private static boolean mAvailable;
+    private DartProductType mProductType;
+
+    public DartMusic(UUID id, String title, String artist, Double dailyRentFee, Integer releaseYear) { //couldn't figure out how to make a song product tyoe.
+        mId = id;
+        mTitle = title;
+        mArtist = artist;
+        mReleaseYear = releaseYear;
+        mDailyRentFee = dailyRentFee;
+        mAvailable = true;
+    }
+
+    public UUID getId() {
+        return mId;
+    }
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public String getArtist() {
+        return mArtist;
+    }
+
+    public Integer getReleaseYear() { return mReleaseYear; }
+
+    public Double getDailyRentFee() {
+        return mDailyRentFee;
+    }
+
+    public DartProductType getProductType() {
+        return mProductType;
+    }
+
+    public static void rentProduct() { mAvailable = false; }
+
+    public static void returnProduct() { mAvailable = true; }
+
+    public static void showAllSongs(Collection<DartMusic> musicList) {
+        for (DartMusic music : musicList) {
+            System.out.println(music);
+        }
+    }
+}
