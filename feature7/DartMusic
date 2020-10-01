@@ -12,7 +12,7 @@ public class DartMusic {
     private static boolean mAvailable;
     private DartProductType mProductType;
 
-    public DartMusic(UUID id, String title, String artist, Double dailyRentFee, Integer releaseYear) { //couldn't figure out how to make a song product tyoe.
+    public DartMusic(UUID id, String title, String artist, Double dailyRentFee, Integer releaseYear, DartProductType productType){ //couldn't figure out how to make a song product tyoe.
         mId = id;
         mTitle = title;
         mArtist = artist;
@@ -43,13 +43,23 @@ public class DartMusic {
         return mProductType;
     }
 
-    public static void rentProduct() { mAvailable = false; }
-
-    public static void returnProduct() { mAvailable = true; }
-
     public static void showAllSongs(Collection<DartMusic> musicList) {
         for (DartMusic music : musicList) {
             System.out.println(music);
         }
     }
+    public String getAvailable() {
+        if (mAvailable == true) {
+            return "AVAILABLE";
+        } else {
+            return "UNAVAILABLE";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return getId() + " : " + getTitle() + " (" + getArtist() + " " + getProductType() + ") " +
+                getDailyRentFee() + " SEK/day. - " + getAvailable();
+    }
+
 }
