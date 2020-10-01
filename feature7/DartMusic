@@ -59,7 +59,7 @@ public class DartMusic {
     @Override
     public String toString() {
         return getId() + " : " + getTitle() + " (" + getArtist() + " " + getProductType() + ") " +
-                getDailyRentFee() + " SEK/day. - " + getAvailable();
+                getDailyRentFee() + " SEK/day. - " + getAvailable(); //update this!!
     }
 
 }
