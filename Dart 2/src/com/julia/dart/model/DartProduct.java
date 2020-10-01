@@ -1,5 +1,6 @@
 package com.julia.dart.model;
 
+import java.util.Collection;
 import java.util.UUID;
 
 public class DartProduct {
@@ -8,7 +9,7 @@ public class DartProduct {
     private String mGenre;
     private Double mDailyRentFee;
     private DartProductType mProductType;
-    private Boolean mAvailable;
+    private static Boolean mAvailable; // why is this static?
 
     public DartProduct( String title, String genre, Double dailyRentFee, DartProductType productType ) {
         mId = UUID.randomUUID();
@@ -39,13 +40,28 @@ public class DartProduct {
         return mProductType;
     }
 
-    public void rentProduct() { mAvailable = false; }
+    public static void rentProduct() { mAvailable = false; }
 
-    public void returnProduct() { mAvailable = true; }
+    public static void returnProduct() { mAvailable = true; }
 
+    public static void showAllGames(Collection<DartProduct> productList){
+        for (DartProduct product : productList) {
+            System.out.println(product);
+        }
+    }
+    public String getAvailable() {
+        if (mAvailable == true) {
+            return "AVAILABLE";
+        } else {
+            return "UNAVAILABLE";
+        }
+    }
 
-
+    @Override
+    public String toString() {
+        return getId() + " : " + getTitle() + " (" + getGenre() + " " + getProductType() + ") " +
+                getDailyRentFee() + " SEK/day. - " + getAvailable();
+    }
 
     //Output
-
 }
