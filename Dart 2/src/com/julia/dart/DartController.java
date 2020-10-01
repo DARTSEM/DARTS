@@ -41,6 +41,7 @@ public class DartController {
         mAddEmployeeView = new DartAddEmployeeView();
         mAddProductView = new DartAddProductView();
         mAddCustomerView = new DartAddCustomerView();
+        mAddMusicView = new DartAddMusicView();
         mRemoveEmployeeView = new DartRemoveEmployeeView();
         mRemoveProductView = new DartRemoveProductView();
         mRemoveCustomerView = new DartRemoveCustomerView();
@@ -172,10 +173,13 @@ public class DartController {
                 }
 
             }
-            case 3 -> { //Register a customer
-
+            case 3 -> { //Add a song
+                DartMusic music = mAddMusicView.getMusicData();
+                mModel.addSong( music );
+                mAddMusicView.renderSuccess();
+                doEmployeeMenu();
             }
-            case 4 -> { //Register a customer
+            case 4 -> { //Remove a song
 
             }
             case 5 -> { //Register a customer
@@ -201,7 +205,12 @@ public class DartController {
                 doShowGamesView();
                 doEmployeeMenu();
             }
-            case 9 -> { //Return to main menu
+            case 9 -> { //View all songs
+                DartMusic.showAllSongs(mModel.getMusicList());
+                doEmployeeMenu();
+
+            }
+            case 10 -> { //Return to main menu
                 mEmployeeMenuView.renderExit();
                 doMainMenu();
 
@@ -315,4 +324,10 @@ public class DartController {
             }
         }
     }
-}
+    void doShowSongsView() { //FIX THIS
+        mShowSongsView.render(mModel.getMusicList());
+        UUID id = null;
+
+
+        }
+    }
