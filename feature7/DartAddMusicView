@@ -11,7 +11,7 @@ public class DartAddMusicView {
     public DartMusic getMusicData(){
         String title, artist;
         UUID id;
-        Integer releaseYear;
+        int releaseYear;
         Double dailyRentFee;
 
         System.out.println(Utilities.line() + "Creating a Song. Please type the song's: ");
@@ -24,8 +24,9 @@ public class DartAddMusicView {
         dailyRentFee = Utilities.doubleInput();
         System.out.println(Utilities.line() + "Release year\n");
         releaseYear = Utilities.intInput();
+        DartProductType song;
 
-        DartMusic music = new DartMusic(id, title, artist, dailyRentFee, releaseYear);
+        DartMusic music = new DartMusic(id, title, artist, dailyRentFee, releaseYear, DartProductType.song);
         return music;
     }
 
