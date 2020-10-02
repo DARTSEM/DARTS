@@ -1,5 +1,5 @@
 package com.julia.dart.model;
 
 public enum DartProductType {
-    Game
+    Game, Song
 }
