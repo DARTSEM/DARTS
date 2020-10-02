@@ -75,16 +75,33 @@ public class DartModel {
         return mCustomers.get(id);
     }
 
-
-
-
     public void rentProduct(DartCustomer customer, DartProduct product, LocalDate rentDate) {
         DartRental rental = new DartRental(customer, product, rentDate);
 
         mRentals.add(rental);
     }
 
-    public void returnProduct(DartRental rental, LocalDate returnDate) {
+    public Double returnProduct(DartRental rental, LocalDate returnDate) {
         rental.returnRental(returnDate);
+
+        return rental.totalRentFee();
+    }
+
+    public Collection<DartRental> getRentalsForCustomer(DartCustomer customer) {
+        ArrayList<DartRental> customerRentals = new ArrayList<>();
+        for (DartRental rental : mRentals) {
+            if (customer.getId().equals(rental.getCustomer().getId())) {
+                customerRentals.add(rental);
+            }
+        }
+        return customerRentals;
+    }
+
+    public Double getTotalProfit() {
+        Double totalProfit = 0.0;
+        for (DartRental rental : mRentals) {
+            totalProfit += rental.totalRentFee();
+        }
+        return totalProfit;
     }
 }
