@@ -19,6 +19,8 @@ public class DartRental {
         mReturnDate = null;
 
     }
+    
+    public void getCustomer() { return mCustomer; }
 
     public void returnRental(LocalDate returnDate) {
         mProduct.returnProduct();
