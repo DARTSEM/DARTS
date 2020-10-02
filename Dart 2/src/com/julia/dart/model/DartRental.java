@@ -20,7 +20,7 @@ public class DartRental {
 
     }
     
-    public void getCustomer() { return mCustomer; }
+    public void getCustomer() { return mCustomer; } 
 
     public void returnRental(LocalDate returnDate) {
         mProduct.returnProduct();
